@@ -4,9 +4,11 @@ function Navbar() {
       <h1>Gaze</h1>
 
       <nav>
-        <button>Inicio</button>
-        <button>Turnos</button>
-        <button>Contacto</button>
+        <ul>
+          <li><button>Inicio</button></li>
+          <li><button>Turnos</button></li>
+          <li><button>Contacto</button></li>
+        </ul>
       </nav>
     </header>
   );
