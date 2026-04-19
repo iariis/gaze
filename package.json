@@ -1,0 +1,21 @@
+{
+  "name": "gaze",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iariis/gaze.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/iariis/gaze/issues"
+  },
+  "homepage": "https://github.com/iariis/gaze#readme"
+}
