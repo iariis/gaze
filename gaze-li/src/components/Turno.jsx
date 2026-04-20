@@ -1,4 +1,4 @@
-function Turno({ turno }) {
+function Turno({ turno, index, eliminarTurno }) {
   return (
     <div>
       <p><strong>Nombre:</strong> {turno.nombre}</p>
@@ -6,8 +6,12 @@ function Turno({ turno }) {
       <p><strong>Hora:</strong> {turno.hora}</p>
       <p><strong>Servicio:</strong> {turno.servicio}</p>
 
-      <button>Editar</button>
-      <button>Eliminar</button>
+      <button onClick={() => eliminarTurno(index)}>
+        Eliminar
+      </button>
+      <button onClick={() => alert("Editar próximamente")}>
+        Editar
+      </button>
     </div>
   );
 }

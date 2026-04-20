@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function FormularioTurno() {
+function FormularioTurno({ agregarTurno }) {
   const [form, setForm] = useState({
     nombre: "",
     fecha: "",
@@ -25,7 +25,7 @@ function FormularioTurno() {
       return;
     }
 
-    console.log("Turno guardado:", form);
+    agregarTurno(form);
 
     // limpiar formulario
     setForm({

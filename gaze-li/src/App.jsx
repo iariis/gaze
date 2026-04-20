@@ -2,27 +2,23 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import FormularioTurno from "./components/FormularioTurno";
 import ListaTurnos from "./components/ListaTurnos";
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c8cbcbc0a469c4e837619e301bc00e386ae382e
 function App() {
   const [turnos, setTurnos] = useState([]);
 
+  function agregarTurno(turno) {
+    setTurnos([...turnos, turno]);
+  }
+  function eliminarTurno(index) {
+  const nuevosTurnos = turnos.filter((_, i) => i !== index);
+  setTurnos(nuevosTurnos);
+}
   return (
     <>
-<<<<<<< HEAD
-     <Navbar />
-     <FormularioTurno />
-     <ListaTurnos turnos={turnos} />
-    
-=======
       <Navbar />
-      <FormularioTurno />
-      <ListaTurnos turnos={turnos} />
->>>>>>> 5c8cbcbc0a469c4e837619e301bc00e386ae382e
+      <FormularioTurno agregarTurno={agregarTurno} />
+      <ListaTurnos turnos={turnos} eliminarTurno={eliminarTurno} />
     </>
   );
 }
 
-export default App;n
+export default App;

@@ -5,9 +5,10 @@ function Navbar() {
 
       <nav>
         <ul>
-          <li><button>Inicio</button></li>
-          <li><button>Turnos</button></li>
-          <li><button>Contacto</button></li>
+          <li><button>Agenda</button></li>
+          <li><button>Ventas</button></li>
+          <li><button>Clientes</button></li>
+          <li><button>Productos</button></li>
         </ul>
       </nav>
     </header>

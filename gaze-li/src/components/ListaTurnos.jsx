@@ -1,6 +1,6 @@
 import Turno from "./Turno";
 
-function ListaTurnos({ turnos }) {
+function ListaTurnos({ turnos, eliminarTurno }) {
   return (
     <div>
       <h2>Turnos agendados</h2>
@@ -9,7 +9,12 @@ function ListaTurnos({ turnos }) {
         <p>No hay turnos todavía</p>
       ) : (
         turnos.map((turno, index) => (
-          <Turno key={index} turno={turno} />
+          <Turno 
+            key={index} 
+            turno={turno} 
+            index={index}
+            eliminarTurno={eliminarTurno}
+          />
         ))
       )}
     </div>
