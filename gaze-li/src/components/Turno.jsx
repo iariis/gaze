@@ -1,3 +1,4 @@
+import "./Turno.css";
 function Turno({ turno, index, eliminarTurno }) {
   return (
     <div>
@@ -15,5 +16,7 @@ function Turno({ turno, index, eliminarTurno }) {
     </div>
   );
 }
-
+<div className="turno">
+  <Turno turno={turno} index={index} eliminarTurno={eliminarTurno} />
+</div>
 export default Turno;

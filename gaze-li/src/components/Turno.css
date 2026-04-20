@@ -1,0 +1,25 @@
+.turno {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.turno button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.turno button:first-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.turno button:last-child {
+  background-color: #3498db;
+  color: white;
+}

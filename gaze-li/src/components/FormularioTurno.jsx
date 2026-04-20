@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./FormularioTurno.css";
 function FormularioTurno({ agregarTurno }) {
   const [form, setForm] = useState({
     nombre: "",

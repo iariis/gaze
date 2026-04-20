@@ -1,8 +1,8 @@
 import Turno from "./Turno";
-
+import "./ListaTurnos.css";
 function ListaTurnos({ turnos, eliminarTurno }) {
   return (
-    <div>
+    <div className="lista-turnos">
       <h2>Turnos agendados</h2>
 
       {turnos.length === 0 ? (
