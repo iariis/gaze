@@ -1,50 +1,99 @@
 import { useState } from "react";
-import "./Turno.css";
+
+// Material UI
+import {
+  Paper,
+  Typography,
+  Box,
+  Button,
+  TextField,
+  Chip,
+  Stack
+} from "@mui/material";
 
 function Turno({ turno, eliminarTurno, editarTurno }) {
   const [editando, setEditando] = useState(false);
-  const [nombreEdit, setNombreEdit] = useState(turno.paciente || turno.nombre);
+  const [nombreEdit, setNombreEdit] = useState(
+    turno.paciente || turno.nombre
+  );
 
   const handleSave = () => {
-    editarTurno(turno.id, { paciente: nombreEdit, nombre: nombreEdit });
+    editarTurno(turno.id, {
+      paciente: nombreEdit,
+      nombre: nombreEdit
+    });
     setEditando(false);
   };
 
   return (
-    <div className="card shadow-sm border-0 mb-3 turno-card">
-      <div className="card-body">
-        <div className="d-flex justify-content-between align-items-start">
-          <div>
-            {editando ? (
-              <input 
-                className="form-control form-control-sm mb-2" 
-                value={nombreEdit} 
-                onChange={(e) => setNombreEdit(e.target.value)} 
-              />
-            ) : (
-              <h5 className="card-title mb-1 text-primary">{turno.paciente || turno.nombre}</h5>
-            )}
-            <p className="card-text mb-1 text-muted">
-              <i className="bi bi-calendar-event me-2"></i>
-              {turno.fecha || "Fecha en Agenda"} | {turno.hora || "Hora en Agenda"}
-            </p>
-            <span className="badge bg-soft-pink text-pink">{turno.servicio}</span>
-          </div>
-          <div className="btn-group">
-            {editando ? (
-              <button className="btn btn-sm btn-success" onClick={handleSave}>Guardar</button>
-            ) : (
-              <button className="btn btn-sm btn-outline-secondary" onClick={() => setEditando(true)}>
-                Editar
-              </button>
-            )}
-            <button className="btn btn-sm btn-outline-danger" onClick={() => eliminarTurno(turno.id)}>
-              Eliminar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Paper elevation={2} sx={{ p: 2, mb: 2 }}>
+
+      <Box display="flex" justifyContent="space-between" alignItems="flex-start">
+
+        {/* INFO */}
+        <Box>
+
+          {editando ? (
+            <TextField
+              size="small"
+              value={nombreEdit}
+              onChange={(e) => setNombreEdit(e.target.value)}
+              sx={{ mb: 1 }}
+            />
+          ) : (
+            <Typography variant="h6" color="primary">
+              {turno.paciente || turno.nombre}
+            </Typography>
+          )}
+
+          <Typography variant="body2" color="text.secondary">
+            {turno.fecha || "Fecha en Agenda"} | {turno.hora || "Hora en Agenda"}
+          </Typography>
+
+          <Chip
+            label={turno.servicio}
+            color="secondary"
+            size="small"
+            sx={{ mt: 1 }}
+          />
+
+        </Box>
+
+        {/* BOTONES */}
+        <Stack direction="row" spacing={1}>
+
+          {editando ? (
+            <Button
+              size="small"
+              variant="contained"
+              color="success"
+              onClick={handleSave}
+            >
+              Guardar
+            </Button>
+          ) : (
+            <Button
+              size="small"
+              variant="outlined"
+              onClick={() => setEditando(true)}
+            >
+              Editar
+            </Button>
+          )}
+
+          <Button
+            size="small"
+            variant="outlined"
+            color="error"
+            onClick={() => eliminarTurno(turno.id)}
+          >
+            Eliminar
+          </Button>
+
+        </Stack>
+
+      </Box>
+    </Paper>
   );
 }
 

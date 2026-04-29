@@ -1,64 +1,63 @@
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box
+} from "@mui/material";
+
 function Navbar({ setView, currentView }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-custom">
-      <div className="container-fluid">
+    <AppBar position="static" color="primary">
+      <Toolbar>
 
         {/* LOGO */}
-        <div 
-          className="navbar-brand d-flex align-items-center" 
-          style={{ cursor: 'pointer' }} 
-          onClick={() => setView('agenda')}
+        <Box
+          sx={{ display: "flex", alignItems: "center", cursor: "pointer", mr: 4 }}
+          onClick={() => setView("agenda")}
         >
-          <img src="https://img.icons8.com/ios/50/000000/eyelash.png" alt="Logo" width="30" height="30" className="me-2" />
-          <span className="fw-bold fs-4">Gaze</span>
-        </div>
+          <img
+            src="https://img.icons8.com/ios/50/ffffff/eyelash.png"
+            alt="Logo"
+            width="30"
+            style={{ marginRight: 8 }}
+          />
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Gaze
+          </Typography>
+        </Box>
 
-        {/* BOTÓN MOBILE */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        {/* BOTONES */}
+        <Box sx={{ display: "flex", gap: 2 }}>
 
-        {/* LINKS */}
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <Button
+            color="inherit"
+            variant={currentView === "agenda" ? "outlined" : "text"}
+            onClick={() => setView("agenda")}
+          >
+            Agenda
+          </Button>
 
-            <li className="nav-item">
-              <button 
-                className={`nav-link btn border-0 ${currentView === 'agenda' ? 'active fw-bold' : ''}`} 
-                onClick={() => setView('agenda')}
-                data-bs-toggle="collapse" 
-                data-bs-target=".navbar-collapse.show"
-              >Agenda</button>
-            </li>
+          <Button
+            color="inherit"
+            variant={currentView === "turnos" ? "outlined" : "text"}
+            onClick={() => setView("turnos")}
+          >
+            Turnos
+          </Button>
 
-            <li className="nav-item">
-              <button 
-                className={`nav-link btn border-0 ${currentView === 'turnos' ? 'active fw-bold' : ''}`} 
-                onClick={() => setView('turnos')}
-                data-bs-toggle="collapse" 
-                data-bs-target=".navbar-collapse.show"
-              >Turnos</button>
-            </li>
+          <Button
+            color="inherit"
+            variant={currentView === "clientes" ? "outlined" : "text"}
+            onClick={() => setView("clientes")}
+          >
+            Clientes
+          </Button>
 
-            <li className="nav-item">
-              <button 
-                className={`nav-link btn border-0 ${currentView === 'clientes' ? 'active fw-bold' : ''}`} 
-                onClick={() => setView('clientes')}
-                data-bs-toggle="collapse" 
-                data-bs-target=".navbar-collapse.show"
-              >Clientes</button>
-            </li>
+        </Box>
 
-          </ul>
-        </div>
-
-      </div>
-    </nav>
+      </Toolbar>
+    </AppBar>
   );
 }
 
