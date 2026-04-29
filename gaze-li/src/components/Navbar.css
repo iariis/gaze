@@ -2,8 +2,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111;
-  color: rgb(192, 85, 165);
+  background-color: #dcbee1; /* Morado pastel */
+  color: #863cb4; /* Morado más oscuro para contraste */
   padding: 15px 30px;
 }
 
@@ -18,14 +18,14 @@ nav button {
 }
 
 nav button:hover {
-  background-color: #555;
+  background-color: #555555;
 }
 .navbar-custom {
-  background-color: #1a1a2e; /* oscuro elegante */
+  background-color: #f3e5f5;
 }
 
 .navbar-custom .nav-link {
-  color: #922d2d;
+  color: #54147c;
 }
 
 .navbar-custom .nav-link:hover {

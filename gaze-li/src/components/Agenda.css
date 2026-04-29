@@ -1,3 +1,7 @@
+body {
+  background-color: #b55575; /* Rosado pastel */
+}
+
 .agenda-container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 1px solid #f0f0f0;
