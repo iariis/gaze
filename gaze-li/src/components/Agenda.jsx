@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import './Agenda.css';
+import React, { useState, useEffect } from "react";
+import "./Agenda.css";
+
+// Material UI
+import { Box, Typography, Paper } from "@mui/material";
 
 function Agenda({ citas, agregarCita }) {
-  const horas = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
+  const horas = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"];
   const dias = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
   const [currentPosition, setCurrentPosition] = useState(-1);
 
@@ -24,70 +27,95 @@ function Agenda({ citas, agregarCita }) {
   const handleCellClick = (dIdx, hIdx) => {
     const nombre = prompt("Nombre del paciente:");
     if (!nombre) return;
+
     const servicio = prompt("Servicio:");
-    
+    const horaFormateada = `${String(hIdx + 9).padStart(2, "0")}:00`;
+    const nombresDias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
     agregarCita({
       paciente: nombre,
       servicio: servicio || "Consulta",
       diaIdx: dIdx,
       inicioIdx: hIdx,
-      duracion: 1
+      duracion: 1,
+      fecha: nombresDias[dIdx],
+      hora: horaFormateada
     });
   };
 
   return (
-    <div className="agenda-container">
+    <Box className="agenda-container">
+
       {/* HEADER */}
-      <div className="header">
-        <div className="header-hora-empty"></div>
-        {dias.map(dia => (
-          <div key={dia} className="header-dia">{dia}</div>
+      <Box className="header">
+        <Box className="header-hora-empty"></Box>
+        {dias.map((dia) => (
+          <Typography key={dia} className="header-dia">
+            {dia}
+          </Typography>
         ))}
-      </div>
+      </Box>
 
-      {/* CUERPO DEL GRID */}
-      <div className="grid-cuerpo">
-        <div className="hora-col">
-          {horas.map(hora => (
-            <div key={hora} className="hora-slot">{hora}</div>
+      {/* GRID */}
+      <Box className="grid-cuerpo">
+
+        {/* HORAS */}
+        <Box className="hora-col">
+          {horas.map((hora) => (
+            <Typography key={hora} className="hora-slot">
+              {hora}
+            </Typography>
           ))}
-        </div>
+        </Box>
 
+        {/* DÍAS */}
         {dias.map((_, dIdx) => (
-          <div key={dIdx} className="dia-col">
+          <Box key={dIdx} className="dia-col">
             {horas.map((_, hIdx) => (
-              <div 
-                key={hIdx} 
-                className="celda" 
+              <Box
+                key={hIdx}
+                className="celda"
                 onClick={() => handleCellClick(dIdx, hIdx)}
-              ></div>
+              />
             ))}
-          </div>
+          </Box>
         ))}
 
-        {/* LÍNEA DE TIEMPO ACTUAL */}
+        {/* LÍNEA ACTUAL */}
         {currentPosition >= 0 && (
-          <div className="now-indicator" style={{ top: `${currentPosition}px` }} />
+          <Box
+            className="now-indicator"
+            sx={{ top: `${currentPosition}px` }}
+          />
         )}
 
-        {/* RENDERIZADO DE CITAS */}
-        {citas.map(cita => (
-          <div 
+        {/* CITAS */}
+        {citas.map((cita) => (
+          <Paper
             key={cita.id}
+            elevation={3}
             className="cita"
-            style={{
-              top: `${cita.inicioIdx * 60}px`, 
+            sx={{
+              top: `${cita.inicioIdx * 60}px`,
               left: `calc(80px + (100% - 80px) / 7 * ${cita.diaIdx} + 2px)`,
               width: `calc((100% - 80px) / 7 - 4px)`,
-              height: `${cita.duracion * 60}px`
+              height: `${cita.duracion * 60}px`,
+              position: "absolute",
+              p: 1
             }}
           >
-            <div className="cita-paciente text-truncate">{cita.paciente}</div>
-            <div className="cita-servicio text-truncate small">{cita.servicio}</div>
-          </div>
+            <Typography variant="body2" noWrap>
+              {cita.paciente}
+            </Typography>
+            <Typography variant="caption" noWrap>
+              {cita.servicio}
+            </Typography>
+          </Paper>
         ))}
-      </div>
-    </div>
+
+      </Box>
+    </Box>
   );
 }
+
 export default Agenda;

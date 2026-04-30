@@ -1,59 +1,127 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+
+// Material UI
+import {
+  Box,
+  Grid,
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody
+} from "@mui/material";
 
 function Clientes({ clientes, agregarCliente }) {
-  const [form, setForm] = useState({ nombre: '', telefono: '', email: '' });
+  const [form, setForm] = useState({
+    nombre: "",
+    telefono: "",
+    email: ""
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.nombre) return;
-    agregarCliente(form);
-    setForm({ nombre: '', telefono: '', email: '' });
+
+    agregarCliente({
+      ...form,
+      id: Date.now()
+    });
+
+    setForm({ nombre: "", telefono: "", email: "" });
   };
 
   return (
-    <div className="row">
-      <div className="col-md-4">
-        <div className="card p-3 shadow-sm">
-          <h5>Nuevo Cliente</h5>
-          <form onSubmit={handleSubmit}>
-            <input 
-              className="form-control mb-2" 
-              placeholder="Nombre" 
+    <Grid container spacing={2}>
+
+      {/* FORMULARIO */}
+      <Grid item xs={12} md={4}>
+        <Paper elevation={3} sx={{ p: 2 }}>
+          <Typography variant="h6" gutterBottom>
+            Nuevo Cliente
+          </Typography>
+
+          <Box component="form" onSubmit={handleSubmit}>
+            <TextField
+              label="Nombre"
+              fullWidth
+              margin="normal"
               value={form.nombre}
-              onChange={e => setForm({...form, nombre: e.target.value})}
+              onChange={(e) =>
+                setForm({ ...form, nombre: e.target.value })
+              }
             />
-            <input 
-              className="form-control mb-2" 
-              placeholder="Teléfono" 
+
+            <TextField
+              label="Teléfono"
+              fullWidth
+              margin="normal"
               value={form.telefono}
-              onChange={e => setForm({...form, telefono: e.target.value})}
+              onChange={(e) =>
+                setForm({ ...form, telefono: e.target.value })
+              }
             />
-            <input 
-              className="form-control mb-2" 
-              placeholder="Email" 
+
+            <TextField
+              label="Email"
+              fullWidth
+              margin="normal"
               value={form.email}
-              onChange={e => setForm({...form, email: e.target.value})}
+              onChange={(e) =>
+                setForm({ ...form, email: e.target.value })
+              }
             />
-            <button className="btn btn-primary w-100">Guardar Cliente</button>
-          </form>
-        </div>
-      </div>
-      <div className="col-md-8">
-        <div className="card p-3 shadow-sm">
-          <h5>Lista de Clientes</h5>
-          <table className="table">
-            <thead>
-              <tr><th>Nombre</th><th>Teléfono</th><th>Email</th></tr>
-            </thead>
-            <tbody>
-              {clientes.map(c => (
-                <tr key={c.id}><td>{c.nombre}</td><td>{c.telefono}</td><td>{c.email}</td></tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{ mt: 2 }}
+            >
+              Guardar Cliente
+            </Button>
+          </Box>
+        </Paper>
+      </Grid>
+
+      {/* LISTA */}
+      <Grid item xs={12} md={8}>
+        <Paper elevation={3} sx={{ p: 2 }}>
+          <Typography variant="h6" gutterBottom>
+            Lista de Clientes
+          </Typography>
+
+          {clientes.length === 0 ? (
+            <Typography>No hay clientes todavía</Typography>
+          ) : (
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell>Teléfono</TableCell>
+                  <TableCell>Email</TableCell>
+                </TableRow>
+              </TableHead>
+
+              <TableBody>
+                {clientes.map((c) => (
+                  <TableRow key={c.id}>
+                    <TableCell>{c.nombre}</TableCell>
+                    <TableCell>{c.telefono}</TableCell>
+                    <TableCell>{c.email}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </Paper>
+      </Grid>
+
+    </Grid>
   );
 }
+
 export default Clientes;

@@ -3,10 +3,10 @@ import "./Turno.css";
 
 function Turno({ turno, eliminarTurno, editarTurno }) {
   const [editando, setEditando] = useState(false);
-  const [nombreEdit, setNombreEdit] = useState(turno.paciente || turno.nombre);
+  const [nombreEdit, setNombreEdit] = useState(turno.paciente);
 
   const handleSave = () => {
-    editarTurno(turno.id, { paciente: nombreEdit, nombre: nombreEdit });
+    editarTurno(turno.id, { paciente: nombreEdit });
     setEditando(false);
   };
 
@@ -22,7 +22,7 @@ function Turno({ turno, eliminarTurno, editarTurno }) {
                 onChange={(e) => setNombreEdit(e.target.value)} 
               />
             ) : (
-              <h5 className="card-title mb-1 text-primary">{turno.paciente || turno.nombre}</h5>
+              <h5 className="card-title mb-1 text-primary">{turno.paciente}</h5>
             )}
             <p className="card-text mb-1 text-muted">
               <i className="bi bi-calendar-event me-2"></i>

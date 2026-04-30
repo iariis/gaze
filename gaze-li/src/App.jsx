@@ -13,10 +13,9 @@ function App() {
   const [clientes, setClientes] = useState([
     { id: 1, nombre: "Juan Pérez", telefono: "12345678", email: "juan@mail.com" }
   ]);
-
-  const agregarCita = (nuevaCita) => {
-    // Si viene del formulario de la página "Turnos"
-    if (nuevaCita.fecha) {
+ // Si viene del formulario (trae fecha en formato YYYY-MM-DD) y no tiene diaIdx
+  const agregarCita = (nuevaCita) => {    // Si viene del formulario (trae fecha en formato YYYY-MM-DD) y no tiene diaIdx
+    if (nuevaCita.fecha && nuevaCita.diaIdx === undefined) {
       const fechaObj = new Date(nuevaCita.fecha + 'T00:00:00');
       let day = fechaObj.getDay();
       const diaIdx = day === 0 ? 6 : day - 1;
@@ -24,21 +23,24 @@ function App() {
       const inicioIdx = (h - 9) + (m / 60);
       
       setCitas([...citas, {
+        ...nuevaCita,
         id: Date.now(),
-        paciente: nuevaCita.nombre,
-        servicio: nuevaCita.servicio,
+        paciente: nuevaCita.nombre, // Unificamos el campo nombre del form a paciente
         diaIdx,
         inicioIdx,
-        duracion: 1 // Por defecto 1 hora
       }]);
     } else {
-      // Si viene del click directo en la Agenda
+      // Si viene de la Agenda o ya está procesado
       setCitas([...citas, { ...nuevaCita, id: Date.now() }]);
     }
   };
 
   const eliminarCita = (id) => {
     setCitas(citas.filter(c => c.id !== id));
+  };
+
+  const editarCita = (id, nuevosDatos) => {
+    setCitas(citas.map(c => c.id === id ? { ...c, ...nuevosDatos } : c));
   };
 
   const agregarCliente = (cliente) => {
@@ -50,7 +52,7 @@ function App() {
       case 'agenda': 
         return <Agenda citas={citas} agregarCita={agregarCita} />;
       case 'turnos': 
-        return <ListaTurnos turnos={citas} agregarTurno={agregarCita} eliminarTurno={eliminarCita} />;
+        return <ListaTurnos turnos={citas} agregarTurno={agregarCita} eliminarTurno={eliminarCita} editarTurno={editarCita} />;
       case 'clientes': 
         return <Clientes clientes={clientes} agregarCliente={agregarCliente} />;
       default: 
