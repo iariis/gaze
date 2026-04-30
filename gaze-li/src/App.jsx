@@ -4,6 +4,14 @@ import Agenda from './components/Agenda';
 import ListaTurnos from './components/ListaTurnos';
 import Clientes from './components/Clientes';
 import './components/Agenda.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// Definimos el tema global para que MUI use la fuente Outfit
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Outfit", sans-serif',
+  },
+});
 
 function App() {
   const [view, setView] = useState('agenda');
@@ -61,12 +69,12 @@ function App() {
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Navbar setView={setView} currentView={view} />
       <div className="container-fluid mt-4">
         {renderContent()}
       </div>
-    </>
+    </ThemeProvider>
   );
 }
 

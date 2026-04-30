@@ -8,7 +8,14 @@ import {
 
 function Navbar({ setView, currentView }) {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar 
+      position="static" 
+      sx={{ 
+        backgroundColor: '#f8bbd0', // Rosado pastel
+        color: '#880e4f',          // Texto en tono cereza oscuro para contraste
+        boxShadow: '0 2px 10px rgba(0,0,0,0.05)' 
+      }}
+    >
       <Toolbar>
 
         {/* LOGO */}
@@ -17,7 +24,7 @@ function Navbar({ setView, currentView }) {
           onClick={() => setView("agenda")}
         >
           <img
-            src="https://img.icons8.com/ios/50/ffffff/eyelash.png"
+            src="https://img.icons8.com/ios/50/880e4f/eyelash.png"
             alt="Logo"
             width="30"
             style={{ marginRight: 8 }}
@@ -34,6 +41,10 @@ function Navbar({ setView, currentView }) {
             color="inherit"
             variant={currentView === "agenda" ? "outlined" : "text"}
             onClick={() => setView("agenda")}
+            sx={{ 
+              fontWeight: currentView === "agenda" ? 'bold' : 'normal',
+              borderColor: '#880e4f' 
+            }}
           >
             Agenda
           </Button>
@@ -42,6 +53,10 @@ function Navbar({ setView, currentView }) {
             color="inherit"
             variant={currentView === "turnos" ? "outlined" : "text"}
             onClick={() => setView("turnos")}
+            sx={{ 
+              fontWeight: currentView === "turnos" ? 'bold' : 'normal',
+              borderColor: '#880e4f' 
+            }}
           >
             Turnos
           </Button>
@@ -50,6 +65,10 @@ function Navbar({ setView, currentView }) {
             color="inherit"
             variant={currentView === "clientes" ? "outlined" : "text"}
             onClick={() => setView("clientes")}
+            sx={{ 
+              fontWeight: currentView === "clientes" ? 'bold' : 'normal',
+              borderColor: '#880e4f' 
+            }}
           >
             Clientes
           </Button>

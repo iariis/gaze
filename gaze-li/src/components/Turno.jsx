@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Turno.css";
+
 
 function Turno({ turno, eliminarTurno, editarTurno }) {
   const [editando, setEditando] = useState(false);

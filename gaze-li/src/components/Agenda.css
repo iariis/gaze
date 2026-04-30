@@ -1,13 +1,13 @@
 body {
-  background-color: #b55575; /* Rosado pastel */
+  background-color: #ffebee; /* Rojo muy claro para el fondo general */
 }
 
 .agenda-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Outfit', sans-serif;
   border: 1px solid #f0f0f0;
   border-radius: 8px;
   overflow: hidden; /* Para contener el scroll interno */
-  background: white;
+  background: #fffafa; /* Fondo con un matiz rojo muy suave en lugar de blanco puro */
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -19,8 +19,8 @@ body {
 .header {
   display: grid;
   grid-template-columns: 80px repeat(7, 1fr);
-  border-bottom: 1px solid #f0f0f0;
-  background-color: #fff;
+  border-bottom: 1px solid #d6b3b3;
+  background-color: #e5c7c7;
   position: sticky;
   top: 0;
   z-index: 30;
@@ -53,13 +53,13 @@ body {
   align-items: flex-start;
   justify-content: center;
   font-size: 0.75rem;
-  color: #999;
-  border-bottom: 1px solid #f0f0f0;
+  color: #a65050;
+  border-bottom: 1px solid #e5c7c7;
 }
 
 .celda {
   height: 60px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #a48f8f;
   border-right: 1px solid #f0f0f0;
 }
 
